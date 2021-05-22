@@ -39,7 +39,11 @@
                       <a href="{{ route('subcategory.edit', $subcategory) }}" class="btn btn-sm btn-primary">Edit</a>                   
                   </td>
                   <td>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    <form action="{{ route('subcategory.destroy', $subcategory) }}" method="POST" onsubmit="return confirmDelete()">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                   </td>
                 </tr>
                 @endforeach
