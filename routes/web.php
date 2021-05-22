@@ -28,4 +28,5 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource('category', CategoryController::class);
+Route::resource('category', CategoryController::class)->except('edit');
+Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit'); 

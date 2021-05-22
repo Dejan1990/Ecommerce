@@ -38,7 +38,7 @@
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->description }}</td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-primary">Edit<a>                        
+                    <a href="{{ route('category.edit', $category) }}" class="btn btn-sm btn-primary">Edit<a>                        
                 </td>
                 <td>
                     <form action="{{ route('category.destroy', $category) }}" method="POST" onsubmit="return confirmDelete()">

@@ -77,7 +77,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', [ 'category' => $category ]);
     }
 
     /**
@@ -89,7 +89,35 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        /* $image = $category->image;
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('public/files');
+            \Storage::delete($category->image);
+        }
+        $category->name= $request->name;
+        $category->description= $request->description;
+        $category->image=$image;
+        $category->save();
+        notify()->success('Category updated successfully!');
+        return redirect()->route('category.index');*/
+
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'mimes:jpeg,png'
+        ]);
+
+        $data = $request->all();
+        $image = $category->image;
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('public/files');
+            Storage::delete($category->image);
+        }
+
+        $data['image'] = $image;
+        $category->update($data);
+        notify()->success('Category updated successfully!');
+        return redirect()->route('category.index');
     }
 
     /**
