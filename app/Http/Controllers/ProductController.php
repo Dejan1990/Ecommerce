@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -39,7 +40,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'description' => 'required|min:3',
+            'image' => 'required|mimes:jpeg,png',
+            'price' => 'required|numeric',
+            'additional_info' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store('public/product'); 
+
+        Product::create($data);
+
+        notify()->success('Product created successfully!');
+        return redirect()->back();
     }
 
     /**
@@ -85,5 +101,11 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function loadSubCategories(Request $request, Category $category)
+    {
+        $subcategory = Subcategory::where('category_id', $category->id)->pluck('name', 'id');
+        return response()->json($subcategory);
     }
 }

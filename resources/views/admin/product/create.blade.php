@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Choose Subcategory</label>
-                        <select name="subcategory" class="form-control @error('subcategory') is-invalid @enderror">
+                        <select name="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror">
                           <option value="">select</option>
                         </select>
                     </div>
@@ -91,4 +91,5 @@
             </form>
         </div>
     </div>
+    @include('admin.partials.scripts')
 @endsection 

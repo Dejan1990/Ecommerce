@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('additional_info');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->integer('subcategory_id');
+            $table->foreignId('subcategory_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
