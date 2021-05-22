@@ -11,11 +11,6 @@
 
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        @if(Session::has('message'))
-            <div class="alert alert-success">
-                {{Session::get('message')}}
-            </div>
-        @endif
         <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <div class="card mb-6">

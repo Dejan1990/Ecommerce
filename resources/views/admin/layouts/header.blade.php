@@ -14,8 +14,19 @@
   <link href="{{asset('admin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/css/ruang-admin.min.css')}}" rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
+  @notifyCss
+
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.css" rel="stylesheet">
+
+  <style>
+    .inset-0 {
+      z-index: 999 !important;
+    }
+  </style>
 
 </head>
 
 <body id="page-top">
+
+  <x:notify-messages />
+  @notifyJs

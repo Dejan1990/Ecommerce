@@ -53,7 +53,8 @@ class CategoryController extends Controller
             'image' => $image
         ]);
 
-        return back()->with('message', 'Category created successfully!');
+        notify()->success('Category created successfully!');
+        return redirect()->route('category.index');
     }
 
     /**
