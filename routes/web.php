@@ -21,4 +21,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('category', CategoryController::class)->except('edit');
 Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit'); 
 
-Route::resource('subcategory', SubcategoryController::class);
+Route::resource('subcategory', SubcategoryController::class)->except('edit');
+Route::get('subcategory/{subcategory:slug}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');

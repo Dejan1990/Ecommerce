@@ -46,7 +46,7 @@ class SubcategoryController extends Controller
        ]));
 
         notify()->success('Subcategory created successfully!');
-        return redirect()->back();
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -68,7 +68,11 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        //
+        $categories = Category::all();
+        return view('admin.subcategory.edit', [ 
+            'subcategory' => $subcategory,
+             'categories' => $categories
+        ]);
     }
 
     /**
@@ -80,7 +84,13 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, Subcategory $subcategory)
     {
-        //
+        $subcategory->update($request->validate([
+            'name' => 'required|min:2',
+            'category_id' => 'required'
+       ])); 
+
+        notify()->success('Subcategory updated successfully!');
+        return redirect()->route('subcategory.index');
     }
 
     /**

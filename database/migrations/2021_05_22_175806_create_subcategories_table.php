@@ -17,6 +17,7 @@ class CreateSubcategoriesTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('slug');
             $table->timestamps();
         });
     }

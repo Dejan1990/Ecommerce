@@ -36,7 +36,7 @@
                   <td>{{ $subcategory->name }}</td>
                   <td>{{ $subcategory->category->name }}</td>                 
                   <td>
-                      <a href="#" class="btn btn-sm btn-primary">Edit</a>                   
+                      <a href="{{ route('subcategory.edit', $subcategory) }}" class="btn btn-sm btn-primary">Edit</a>                   
                   </td>
                   <td>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
