@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +24,5 @@ Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->nam
 
 Route::resource('subcategory', SubcategoryController::class)->except('edit');
 Route::get('subcategory/{subcategory:slug}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
+
+Route::resource('subcategory', ProductController::class);
