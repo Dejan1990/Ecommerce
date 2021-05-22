@@ -16,7 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::latest()->paginate(10);
+        return view('admin.product.index', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -55,7 +58,7 @@ class ProductController extends Controller
         Product::create($data);
 
         notify()->success('Product created successfully!');
-        return redirect()->back();
+        return redirect()->route('product.index');
     }
 
     /**
