@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -49,7 +50,8 @@ class ProductController extends Controller
             'image' => 'required|mimes:jpeg,png',
             'price' => 'required|numeric',
             'additional_info' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'subcategory_id' => 'required'
         ]);
 
         $data = $request->all();
@@ -80,7 +82,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('admin.product.edit', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -92,7 +98,27 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'description' => 'required|min:3',
+            'image' => 'mimes:jpeg,png',
+            'price' => 'required|numeric',
+            'additional_info' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required'
+        ]);
+
+        $data = $request->all();
+        $image = $product->image;
+        if($request->file('image')){
+            $image = $request->file('image')->store('public/product');
+            Storage::delete($product->image);
+        }
+
+        $data['image'] = $image;
+        $product->update($data);
+        notify()->success('Product updated successfully!');
+        return redirect()->route('product.index');
     }
 
     /**

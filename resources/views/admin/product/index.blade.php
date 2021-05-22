@@ -45,7 +45,7 @@
                   <td>${{ $product->price }}</td>
                   <td>{{ $product->category->name }}</td>
                   <td>
-                    <a href="#">
+                    <a href="{{ route('product.edit', $product) }}">
                         <button class="btn btn-primary">Edit</button>
                     </a>
                   </td>
