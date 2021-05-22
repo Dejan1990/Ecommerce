@@ -25,4 +25,4 @@ Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->nam
 Route::resource('subcategory', SubcategoryController::class)->except('edit');
 Route::get('subcategory/{subcategory:slug}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
 
-Route::resource('subcategory', ProductController::class);
+Route::resource('product', ProductController::class);
