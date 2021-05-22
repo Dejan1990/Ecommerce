@@ -129,7 +129,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $filename = $product->image;
+        $product->delete();
+        Storage::delete($filename);
+        notify()->success('Product deleted successfully!');
+        return redirect()->route('product.index');
     }
 
     public function loadSubCategories(Request $request, Category $category)

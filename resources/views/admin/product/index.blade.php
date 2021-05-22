@@ -50,9 +50,11 @@
                     </a>
                   </td>
                   <td>
-                    <a href="#">
-                        <button class="btn btn-danger">Delete</button>
-                    </a>
+                    <form action="{{ route('product.destroy', $product) }}" method="POST" onsubmit="return confirmDelete()">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>                           
+                    </form>
                   </td>
                 </tr>
                 @endforeach
