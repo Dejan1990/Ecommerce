@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //$categories = Category::get(); Ako koristimo paginate ne mozemo da koristimo get, all()...
+        $categories = Category::latest()->paginate(10);
+        return view('admin.category.index', [ 'categories' => $categories ]);
     }
 
     /**
