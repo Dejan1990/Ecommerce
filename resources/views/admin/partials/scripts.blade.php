@@ -8,7 +8,7 @@
             if(category){
                 $.ajax({
                     //url:'/subcategories/'+catId,
-                    url:'/subcategories/'+category,
+                    url:'/auth/subcategories/'+category,
                     type:"GET",
                     dataType:"json",
                     success:function(data){

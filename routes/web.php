@@ -6,10 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontendProductController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendProductController::class, 'index']);
 
 Auth::routes();
 
