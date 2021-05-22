@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -99,6 +100,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $filename = $category->image;
+        $category->delete();
+        Storage::delete($filename);
+        notify()->success('Category deleted successfully!');
+        return redirect()->route('category.index');
     }
 }

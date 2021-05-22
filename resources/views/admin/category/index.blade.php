@@ -41,7 +41,11 @@
                     <a href="#" class="btn btn-sm btn-primary">Edit<a>                        
                 </td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-danger">Delete<a> 
+                    <form action="{{ route('category.destroy', $category) }}" method="POST" onsubmit="return confirmDelete()">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>                           
+                    </form>
                 </td>
                 </tr>
                 @endforeach
