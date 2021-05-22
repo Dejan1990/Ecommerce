@@ -11,39 +11,7 @@
     <div class="row justify-content-center">
     <div class="col-lg-10">
         <form action="{{ route('subcategory.store' )}}" method="POST">
-            @csrf
-            <div class="card mb-6">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Create SubCategory</h6>
-                </div>
-                <div class="card-body">
-                    <div class="form-group"> 
-                      <label for="">Name</label>
-                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" aria-describedby=""
-                        placeholder="Enter name of subcategory" value="{{ old('name') }}">
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                      <label for="">Choose Category</label>
-                        <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                          <option value="">select</option>
-                          @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                          @endforeach
-                        </select>
-                        @error('category_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror                    
-                    </div>                                  
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
+          @include('admin.subcategory._form', [ 'buttonText' => 'Create Subcategory' ])
         </form>
        </div>
     </div>

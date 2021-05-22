@@ -28,7 +28,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $category = new Category();
+        return view('admin.category.create', [
+            'category' => $category
+        ]);
     }
 
     /**

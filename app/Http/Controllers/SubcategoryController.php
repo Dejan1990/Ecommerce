@@ -26,9 +26,11 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
+        $subcategory = new Subcategory();
         $categories = Category::all();
         return view('admin.subcategory.create', [ 
-            'categories' => $categories 
+            'categories' => $categories,
+            'subcategory' => $subcategory 
         ]);
     }
 
