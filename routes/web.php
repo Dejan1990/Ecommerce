@@ -11,22 +11,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function () {
-    return view('admin.dashboard');
-});
-
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource('category', CategoryController::class)->except('edit');
-Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit'); 
+Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function () {
+    
+    Route::get('/index', function () {
+        return view('admin.dashboard');
+    });
 
-Route::resource('subcategory', SubcategoryController::class)->except('edit');
-Route::get('subcategory/{subcategory:slug}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
+    Route::resource('category', CategoryController::class)->except('edit');
+    Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit');
 
-Route::resource('product', ProductController::class);
-Route::get('product/{product:slug}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::resource('subcategory', SubcategoryController::class)->except('edit');
+    Route::get('subcategory/{subcategory:slug}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
 
-//Route::get('subcategories/{id}', [ProductController::class, 'loadSubCategories']); 
-Route::get('subcategories/{category}', [ProductController::class, 'loadSubCategories']); 
+    Route::resource('product', ProductController::class);
+    Route::get('product/{product:slug}', [ProductController::class, 'edit'])->name('product.edit');
+    //Route::get('subcategories/{id}', [ProductController::class, 'loadSubCategories']); 
+    Route::get('subcategories/{category}', [ProductController::class, 'loadSubCategories']); 
+});
