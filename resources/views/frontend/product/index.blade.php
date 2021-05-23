@@ -6,19 +6,23 @@
 
   <div class="container">
   <h2>Category</h2>
-      <a href="#"> <button class="btn btn-secondary">CategoryName</button></a>
+  @foreach($categories as $category)
+    <a href="#">
+      <button class="btn btn-secondary">{{ $category->name }}</button>
+    </a>
+  @endforeach
   <div class="album py-5 bg-light">
     <div class="container">
         <h2>Products</h2>
       <div class="row">
-      <!-- Foreach -->
+       @foreach($products as $product)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img src="#" height="200" style="width: 100%">
+            <img src="{{ Storage::url($product->image) }}" height="200" style="width: 100%">
             <div class="card-body">
-                <p><b>ProductName</b></p>
+                <p><b>{{ $product->name }}</b></p>
               <p class="card-text">
-                  Product description
+                {{ (Str::limit($product->description,120)) }}
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -28,12 +32,12 @@
                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                 </a>
                 </div>
-                <small class="text-muted">$500</small>
+                <small class="text-muted">${{ $product->price }}</small>
               </div>
             </div>
           </div>
         </div>
-        <!-- Endforeach -->
+        @endforeach
       </div>
     </div>
     <center>
