@@ -7,10 +7,13 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendProductController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', [FrontendProductController::class, 'index']);
 Route::get('/product/{product:slug}', [FrontendProductController::class, 'show'])->name('product.view');
 Route::get('/category/{category:slug}', [FrontendProductController::class, 'allProduct'])->name('product.list');
+
+Route::get('/addToCart/{product}', [CartController::class, 'addToCart'])->name('add.cart');
 
 Auth::routes();
 

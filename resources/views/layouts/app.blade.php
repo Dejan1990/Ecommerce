@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @notifyCss
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -41,7 +43,7 @@
                         <!-- Authentication Links -->
                         <a href="#" class="nav-link">
                             <span class="fas fa-shopping-cart">
-                             0
+                                ({{ session()->has('cart') ? session()->get('cart')->totalQty : '0' }})
                             </span>
                         </a>
                         @guest
@@ -81,5 +83,7 @@
             @yield('content')
         </main>
     </div>
+    <x:notify-messages />
+  @notifyJs 
 </body>
 </html>

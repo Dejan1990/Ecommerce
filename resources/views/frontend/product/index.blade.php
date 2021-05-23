@@ -30,7 +30,7 @@
                     <button type="button" class="btn btn-sm btn-outline-success">View</button>
                   </a>
                 </a>
-                <a class="addToCart" id="">
+                <a href="{{ route('add.cart', [$product->id]) }}" class="addToCart">
                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                 </a>
                 </div>
@@ -67,7 +67,7 @@
                   <a href="{{ route('product.view', $product) }}">
                     <button type="button" class="btn btn-sm btn-outline-success">View</button>
                   </a>
-                  <a href="#">
+                  <a href="{{ route('add.cart', [$product->id]) }}">
                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                   </a>
                 </div>
@@ -95,7 +95,7 @@
                   <a href="{{ route('product.view', $product) }}">
                     <button type="button" class="btn btn-sm btn-outline-success">View</button>
                   </a>
-                  <a href="#">
+                  <a href="{{ route('add.cart', [$product->id]) }}">
                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                   </a>
                 </div>
