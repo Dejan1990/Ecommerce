@@ -94,6 +94,19 @@ class CartController extends Controller
         }
     }
 
+	//for loggedin user
+    public function order()
+	{
+        $orders = auth()->user()->orders;
+        $carts = $orders->transform(function($cart, $key){
+            return unserialize($cart->cart);
+        });
+		
+        return view('frontend.order.index', [ 
+			'carts' => $carts 
+		]);
+    }
+
 	private function setCart() 
 	{
 		if(session()->has('cart')){ 
