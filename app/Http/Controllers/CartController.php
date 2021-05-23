@@ -11,13 +11,14 @@ class CartController extends Controller
     public function addToCart(Product $product, Request $request){
     	//return $product;
 
-        if(session()->has('cart')){ // ovo 'cart' je isto 'cart' iz session()->put('cart',$cart);
+        /*if(session()->has('cart')){ // ovo 'cart' je isto 'cart' iz session()->put('cart',$cart);
     		$cart = new Cart(session()->get('cart'));
     	}else{
     		$cart = new Cart();
-    	}
+    	}*/
 
-    	$cart->add($product);
+    	$cart = $this->setCart();
+		$cart->add($product);
 
     	session()->put('cart', $cart);
     	notify()->success('Product added to cart!');
@@ -32,7 +33,9 @@ class CartController extends Controller
     		$cart = null;
     	}
 
-    	return view('frontend.cart.index', compact('cart'));
+    	return view('frontend.cart.index', [
+			'cart' => $cart
+		]);
     }
 
 	public function updateCart(Request $request, Product $product)
@@ -60,4 +63,15 @@ class CartController extends Controller
     	notify()->success('Cart updated!');
         return redirect()->back();
     }
+
+	private function setCart() 
+	{
+		if(session()->has('cart')){ 
+    		$value = new Cart(session()->get('cart'));
+    	}else{
+    		$value = new Cart();
+    	}
+
+		return $value;
+	}
 }
