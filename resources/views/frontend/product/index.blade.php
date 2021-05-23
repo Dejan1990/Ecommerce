@@ -53,56 +53,58 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="row">
-        <!-- Foreach -->
+        @foreach($randomActiveProducts as $product)
         <div class="col-4">
-                    <div class="card mb-4 shadow-sm">
-            <img src="#" height="200" style="width: 100%">
+          <div class="card mb-4 shadow-sm">
+            <img src="{{ Storage::url($product->image) }}" height="200" style="width: 100%">
             <div class="card-body">
-                <p><b>RandomProductName</b></p>
+                <p><b>{{ $product->name }}</b></p>
               <p class="card-text">
-                    RandomProduct description
+                {{ (Str::limit($product->description,120)) }}
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-success">View</button>
-            <a href="">
-            <a href="#">
-                <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-            </a>
-            </a>
+                  <a href="{{ route('product.view', $product) }}">
+                    <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                  </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                  </a>
                 </div>
-                <small class="text-muted">$700</small>
+                <small class="text-muted">${{ $product->price }}</small>
               </div>
             </div>
           </div>
         </div>
-        <!-- Endforeach -->
+        @endforeach
       </div>
     </div>
     <div class="carousel-item ">
       <div class="row">
-        <!-- Foreach -->
-
+        @foreach($randomItemProducts as $product)
         <div class="col-4">
           <div class="card mb-4 shadow-sm">
-            <img src="#" height="200" style="width: 100%">
+            <img src="{{ Storage::url($product->image) }}" height="200" style="width: 100%">
             <div class="card-body">
-                <p><b>randomItemProducts</b></p>
+                <p><b>{{ $product->name }}</b></p>
               <p class="card-text">
-                randomItemProducts description
+                {{ (Str::limit($product->description,120)) }}
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                <a href="#">  <button type="button" class="btn btn-sm btn-outline-success">View</button></a>
-                 <a href="#"> 
-                <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button></a>
+                  <a href="{{ route('product.view', $product) }}">
+                    <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                  </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                  </a>
                 </div>
-                <small class="text-muted">$900</small>
+                <small class="text-muted">${{ $product->price }}</small>
               </div>
             </div>
           </div>
         </div>
-        <!-- Endforeach -->
+        @endforeach
       </div>
     </div>
   </div>

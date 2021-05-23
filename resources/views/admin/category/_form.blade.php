@@ -23,12 +23,12 @@
                 </span>
           @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group pb-5">
           <div class="custom-file">
-            <input type="file" class="custom-file-input mb-4 @error('image') is-invalid @enderror" id="customFile" name="image">
+            <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" name="image">
             <label class="custom-file-label" for="customFile">Choose file</label>
             @if ($category->image)
-                <img src="{{ Storage::url($category->image) }}" width="100" height="100">
+                <img src="{{ Storage::url($category->image) }}" width="100" height="100" class="mt-3">
             @endif
             @error('image')
                 <span class="invalid-feedback" role="alert">
@@ -37,7 +37,8 @@
             @enderror
           </div>
         </div>
-        <br><br><br><br>
-        <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
+        <div class="form-group pt-5 mt-5">
+          <button type="submit" class="btn btn-primary">{{ $buttonText }}</button>
+        </div>
     </div>
   </div>
