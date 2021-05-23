@@ -63,18 +63,18 @@ class FrontendProductController extends Controller
         ]);
     }
 
-    public function filterProducts(Request $request)
+    private function filterProducts(Request $request)
     {
-        $subId = [];
-        $subcategory = Subcategory::whereIn('id', $request->subcategory)->get();
-        foreach($subcategory as $sub){
-            array_push($subId, $sub->id);
-        }
-        $products = Product::whereIn('subcategory_id', $subId)->get();
+        $products = Product::whereIn('subcategory_id', $this->checkboxRequest($request))->get();
         return $products;
     }
 
-    public function getSubcategoriesId(Request $request)
+    private function getSubcategoriesId(Request $request)
+    {
+        return $this->checkboxRequest($request);
+    }
+
+    private function checkboxRequest(Request $request)
     {
         $subId = [];
         $subcategory = Subcategory::whereIn('id', $request->subcategory)->get();
