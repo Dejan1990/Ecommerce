@@ -26,7 +26,9 @@
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                 <a href="#"> <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                  <a href="{{ route('product.view', $product) }}">
+                    <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                  </a>
                 </a>
                 <a class="addToCart" id="">
                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>

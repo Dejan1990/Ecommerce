@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendProductController;
 
 Route::get('/', [FrontendProductController::class, 'index']);
+Route::get('/product/{product:slug}', [FrontendProductController::class, 'show'])->name('product.view');
 
 Auth::routes();
 

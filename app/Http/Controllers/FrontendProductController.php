@@ -17,4 +17,9 @@ class FrontendProductController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function show(Product $product)
+    {
+        return view('frontend.product.show', [ 'product' => $product ]);
+    }
 }
