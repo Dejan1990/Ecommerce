@@ -72,8 +72,8 @@
       <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Slider </h6>
-          <a class="collapse-item" href="#">View</a>
-          <a class="collapse-item" href="#">Create</a>
+          <a class="collapse-item" href="{{ route('slider.index') }}">View</a>
+          <a class="collapse-item" href="{{ route('slider.create') }}">Create</a>
 
         </div>
       </div>

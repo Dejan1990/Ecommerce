@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+    public function index()
+    {
+		$sliders = Slider::get();
+		return view('admin.slider.index', [ 'sliders' => $sliders ]);
+	}
+
     public function create()
     {
     	return view('admin.slider.create');
@@ -23,6 +29,13 @@ class SliderController extends Controller
     		'image' => $image
     	]);
     	notify()->success('Image uploaded successfully!');
+        return redirect()->route('slider.index');
+    }
+
+    public function destroy(Slider $slider)
+    {
+    	$slider->delete();
+    	notify()->success('Image deleted successfully!');
         return back();
     }
 }

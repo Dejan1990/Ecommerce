@@ -44,6 +44,5 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function
     //Route::get('subcategories/{id}', [ProductController::class, 'loadSubCategories']); 
     Route::get('subcategories/{category}', [ProductController::class, 'loadSubCategories']); 
 
-    Route::get('slider/create', [SliderController::class, 'create'])->name('slider.create');
-    Route::post('slider', [SliderController::class, 'store'])->name('slider.store');
+    Route::resource('slider', SliderController::class)->only(['index', 'create', 'store', 'destroy']);
 });
