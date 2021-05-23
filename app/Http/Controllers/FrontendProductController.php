@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class FrontendProductController extends Controller
@@ -37,6 +38,17 @@ class FrontendProductController extends Controller
         return view('frontend.product.show', [
             'product' => $product,
             'productFromSameCategories' => $productFromSameCategories
+        ]);
+    }
+
+    public function allProduct(Category $category)
+    {
+        //$category = Category::where('slug', $name)->first();
+        $products = Product::where('category_id', $category->id)->get();
+        $subcategories = Subcategory::where('category_id', $category->id)->get();
+        return view('frontend.category.index', [
+            'products' => $products,
+            'subcategories' => $subcategories
         ]);
     }
 }

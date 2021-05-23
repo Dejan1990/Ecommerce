@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontendProductController;
 
 Route::get('/', [FrontendProductController::class, 'index']);
 Route::get('/product/{product:slug}', [FrontendProductController::class, 'show'])->name('product.view');
+Route::get('/category/{category:slug}', [FrontendProductController::class, 'allProduct'])->name('product.list');
 
 Auth::routes();
 

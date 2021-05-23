@@ -7,7 +7,7 @@
   <div class="container">
   <h2>Category</h2>
   @foreach($categories as $category)
-    <a href="#">
+    <a href="{{ route('product.list', $category) }}">
       <button class="btn btn-secondary">{{ $category->name }}</button>
     </a>
   @endforeach
