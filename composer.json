@@ -12,7 +12,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "3.0",
-        "mckenziearts/laravel-notify": "^2.1"
+        "mckenziearts/laravel-notify": "^2.1",
+        "cartalyst/stripe-laravel": "^13.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
