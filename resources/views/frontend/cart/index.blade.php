@@ -24,9 +24,9 @@
       <td>{{ $product['name'] }}</td>
       <td>${{ $product['price'] }}</td>
       <td>
-    <form action="#" method="post">
+    <form action="{{ route('cart.update', $product['id']) }}" method="post">
         @csrf
-      	<input type="text" name="qty" value="1">
+      	<input type="text" name="qty" value="{{ $product['qty'] }}">
       	<button class="btn btn-secondary btn-sm">
       		<i class="fas fa-sync"></i>Update
       	</button>

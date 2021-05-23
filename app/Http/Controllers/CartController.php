@@ -34,4 +34,17 @@ class CartController extends Controller
 
     	return view('frontend.cart.index', compact('cart'));
     }
+
+	public function updateCart(Request $request, Product $product)
+	{
+    	$request->validate([
+    		'qty'=>'required|numeric|min:1'
+    	]);
+
+    	$cart = new Cart(session()->get('cart'));
+    	$cart->updateQty($product->id, $request->qty);
+    	session()->put('cart', $cart);
+    	notify()->success('Cart updated!');
+        return redirect()->back();
+    }
 }

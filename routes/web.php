@@ -15,6 +15,7 @@ Route::get('/category/{category:slug}', [FrontendProductController::class, 'allP
 
 Route::get('/addToCart/{product}', [CartController::class, 'addToCart'])->name('add.cart');
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::post('/products/{product}', [CartController::class, 'updateCart'])->name('cart.update');
 
 Auth::routes();
 
