@@ -15,13 +15,14 @@
     </tr>
   </thead>
   <tbody>
-
+    @if($cart)
+    @php $i=1 @endphp
+    @foreach($cart->items as $product)
     <tr>
-      <th scope="row">1</th>
-
-      <td><img src="#" width="100"></td>
-      <td>Product name</td>
-      <td>$500</td>
+      <th scope="row">{{ $i++ }}</th>
+      <td><img src="{{ Storage::url($product['image']) }}" width="100"></td>
+      <td>{{ $product['name'] }}</td>
+      <td>${{ $product['price'] }}</td>
       <td>
     <form action="#" method="post">
         @csrf
@@ -38,17 +39,17 @@
       </form>
       </td>
     </tr>
-
+    @endforeach
   </tbody>
 </table>
 <hr>
 <div class="card-footer">
 	<a href="{{url('/')}}"><button class="btn btn-primary">Continue shopping</button></a>
-	<span style="margin-left: 300px;">Total Price:$1200</span>
+	<span style="margin-left: 300px;">Total Price:${{ $cart->totalPrice }}</span>
 	<a href="#"><button class="btn btn-info float-right">Checkout</button></a>
 </div>
-
+@else
 <td>No items in cart</td>
-
- </div>
- @endsection
+@endif
+</div>
+@endsection

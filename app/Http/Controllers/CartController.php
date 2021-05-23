@@ -26,6 +26,12 @@ class CartController extends Controller
 
 	public function showCart()
 	{
-    	return view('frontend.cart.index');
+    	if(session()->has('cart')){
+    		$cart = new Cart(session()->get('cart'));
+    	}else{
+    		$cart = null;
+    	}
+
+    	return view('frontend.cart.index', compact('cart'));
     }
 }
