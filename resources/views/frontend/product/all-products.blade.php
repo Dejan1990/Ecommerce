@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
- 	<form action="#" method="GET">
+ 	<form action="{{ route('more.product') }}" method="GET">
  		<div class="form-row">
  			<div class="col-md-8">
  				<input type="text" name="search" class="form-control" placeholder="search...">

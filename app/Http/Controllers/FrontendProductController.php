@@ -65,9 +65,18 @@ class FrontendProductController extends Controller
         ]);
     }
 
-    public function moreProducts()
+    public function moreProducts(Request $request)
     {
-        $products = Product::latest()->paginate(3);
+        if($request->search){
+            $products = Product::where('name','like','%'.$request->search.'%')
+            ->orWhere('description','like','%'.$request->search.'%')
+            ->orWhere('additional_info','like','%'.$request->search.'%')
+            ->paginate(50);
+            return view('frontend.product.all-products', [ 'products' => $products ]);
+        }
+
+        $products = Product::latest()->paginate(50);
+        
         return view('frontend.product.all-products', [
             'products' => $products
         ]);
