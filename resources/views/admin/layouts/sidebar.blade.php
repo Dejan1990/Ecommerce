@@ -1,5 +1,5 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/auth/dashboard')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard.index') }}">
       <div class="sidebar-brand-icon">
         Laravel
      <!--    <img src="{{asset('admin/img/logo/logo2.png')}}"> -->
@@ -8,7 +8,7 @@
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('dashboard.index') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>

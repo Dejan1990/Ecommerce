@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
@@ -29,9 +30,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function () {
     
-    Route::get('/index', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('category', CategoryController::class)->except('edit');
     Route::get('category/{category:slug}', [CategoryController::class, 'edit'])->name('category.edit');
