@@ -41,14 +41,32 @@ class FrontendProductController extends Controller
         ]);
     }
 
-    public function allProduct(Category $category)
+    public function allProduct(Category $category, Request $request)
     {
         //$category = Category::where('slug', $name)->first();
-        $products = Product::where('category_id', $category->id)->get();
+        if($request->subcategory){
+            $products = $this->filterProducts($request);
+        } else {
+            $products = Product::where('category_id', $category->id)->get();
+        }
+
         $subcategories = Subcategory::where('category_id', $category->id)->get();
+
         return view('frontend.category.index', [
+            'category' => $category,
             'products' => $products,
             'subcategories' => $subcategories
         ]);
+    }
+
+    public function filterProducts(Request $request)
+    {
+        $subId = [];
+        $subcategory = Subcategory::whereIn('id', $request->subcategory)->get();
+        foreach($subcategory as $sub){
+            array_push($subId, $sub->id);
+        }
+        $products = Product::whereIn('subcategory_id', $subId)->get();
+        return $products;
     }
 }

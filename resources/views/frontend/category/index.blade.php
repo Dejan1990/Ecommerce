@@ -5,7 +5,7 @@
         <h2>Products</h2>
       <div class="row">
         <div class="col-md-2">
-            <form action="#" method="GET">
+            <form action="{{ route('product.list', $category) }}" method="GET">
             <!--foreach subcategories-->
             @foreach($subcategories as $subcategory)
               <p><input type="checkbox" name="subcategory[]" value="{{ $subcategory->id }}">
