@@ -14,6 +14,7 @@ Route::get('/product/{product:slug}', [FrontendProductController::class, 'show']
 Route::get('/category/{category:slug}', [FrontendProductController::class, 'allProduct'])->name('product.list');
 
 Route::get('/addToCart/{product}', [CartController::class, 'addToCart'])->name('add.cart');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 
 Auth::routes();
 

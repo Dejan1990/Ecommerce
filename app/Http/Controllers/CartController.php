@@ -23,4 +23,9 @@ class CartController extends Controller
     	notify()->success('Product added to cart!');
         return back();
     }
+
+	public function showCart()
+	{
+    	return view('frontend.cart.index');
+    }
 }
