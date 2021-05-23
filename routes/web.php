@@ -8,6 +8,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SliderController;
 
 Route::get('/', [FrontendProductController::class, 'index']);
 Route::get('/product/{product:slug}', [FrontendProductController::class, 'show'])->name('product.view');
@@ -42,4 +43,7 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function
     Route::get('product/{product:slug}', [ProductController::class, 'edit'])->name('product.edit');
     //Route::get('subcategories/{id}', [ProductController::class, 'loadSubCategories']); 
     Route::get('subcategories/{category}', [ProductController::class, 'loadSubCategories']); 
+
+    Route::get('slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('slider', [SliderController::class, 'store'])->name('slider.store');
 });
