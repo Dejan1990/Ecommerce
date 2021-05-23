@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [FrontendProductController::class, 'index']);
 Route::get('/product/{product:slug}', [FrontendProductController::class, 'show'])->name('product.view');
@@ -44,4 +45,6 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function
     Route::get('subcategories/{category}', [ProductController::class, 'loadSubCategories']); 
 
     Route::resource('slider', SliderController::class)->only(['index', 'create', 'store', 'destroy']);
+
+    Route::get('users', [UserController::class, 'index'])->name('user.index');
 });
