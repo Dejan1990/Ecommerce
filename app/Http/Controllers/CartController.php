@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
@@ -112,6 +113,15 @@ class CartController extends Controller
 		
         return view('frontend.order.index', [ 
 			'carts' => $carts 
+		]);
+    }
+
+	//for admin
+    public function userOrder()
+    {
+        $orders = Order::latest()->get();
+        return view('admin.order.index', [
+			'orders' => $orders
 		]);
     }
 

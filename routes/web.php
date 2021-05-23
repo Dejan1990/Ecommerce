@@ -47,4 +47,6 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function
     Route::resource('slider', SliderController::class)->only(['index', 'create', 'store', 'destroy']);
 
     Route::get('users', [UserController::class, 'index'])->name('user.index');
+
+    Route::get('/orders', [CartController::class, 'userOrder'])->name('order.index');
 });
