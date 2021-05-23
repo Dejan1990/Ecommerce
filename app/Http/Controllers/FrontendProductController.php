@@ -28,6 +28,15 @@ class FrontendProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('frontend.product.show', [ 'product' => $product ]);
+        $productFromSameCategories = Product::inRandomOrder()
+            ->where('category_id', $product->category_id)
+            ->where('id','!=', $product->id)
+            ->limit(3)
+            ->get();
+
+        return view('frontend.product.show', [
+            'product' => $product,
+            'productFromSameCategories' => $productFromSameCategories
+        ]);
     }
 }
