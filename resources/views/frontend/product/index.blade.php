@@ -43,9 +43,9 @@
       </div>
     </div>
     <center>
-        <a href="#">
-          <button class="btn btn-success">More Product</button>
-        </a>
+      <a href="{{ route('more.product') }}">
+        <button class="btn btn-success">More Product</button>
+      </a>
     </center>
     </div>
   <div class="jumbotron">

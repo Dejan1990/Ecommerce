@@ -65,6 +65,14 @@ class FrontendProductController extends Controller
         ]);
     }
 
+    public function moreProducts()
+    {
+        $products = Product::latest()->paginate(3);
+        return view('frontend.product.all-products', [
+            'products' => $products
+        ]);
+    }
+
     private function filterByPrice(Request $request)
     {
         //$categoryId = $request->categoryId; //$categoryId se podudara sa $categoryId u allProduct($name, Request $request)
