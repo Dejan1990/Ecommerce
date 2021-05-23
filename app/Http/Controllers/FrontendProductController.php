@@ -44,8 +44,11 @@ class FrontendProductController extends Controller
     public function allProduct(Category $category, Request $request)
     {
         //$category = Category::where('slug', $name)->first();
+        $filterSubCategories = []; //140.Frontend rememeber checkbox state->ovo smo dodali da bi varijabla uvek postojala, i kad otvorimo ovu stranu i nismo nijedan Subcategory stiklirali
+
         if($request->subcategory){
             $products = $this->filterProducts($request);
+            $filterSubCategories = $this->getSubcategoriesId($request);
         } else {
             $products = Product::where('category_id', $category->id)->get();
         }
@@ -55,7 +58,8 @@ class FrontendProductController extends Controller
         return view('frontend.category.index', [
             'category' => $category,
             'products' => $products,
-            'subcategories' => $subcategories
+            'subcategories' => $subcategories,
+            'filterSubCategories' => $filterSubCategories
         ]);
     }
 
@@ -68,5 +72,15 @@ class FrontendProductController extends Controller
         }
         $products = Product::whereIn('subcategory_id', $subId)->get();
         return $products;
+    }
+
+    public function getSubcategoriesId(Request $request)
+    {
+        $subId = [];
+        $subcategory = Subcategory::whereIn('id', $request->subcategory)->get();
+        foreach($subcategory as $sub){
+            array_push($subId, $sub->id);
+        }
+        return $subId;
     }
 }
