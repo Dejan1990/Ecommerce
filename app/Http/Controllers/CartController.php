@@ -126,6 +126,16 @@ class CartController extends Controller
 		]);
     }
 
+	/*public function viewUserOrder($id) ovako je izgledao metod pre zadnje prepravke
+    {
+        $user = User::find($id);
+        $orders = $user->orders;
+        $carts = $orders->transform(function($cart,$key){
+            return unserialize($cart->cart);
+        });
+        return view('admin.order.show', compact('carts'));
+    }*/
+
 	public function viewUserOrder($userid, $orderid)
     {
         $user = User::find($userid);
