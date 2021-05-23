@@ -39,7 +39,7 @@
                   <td>{{ date('d-M-y',strtotime($order->created_at)) }}</td>
                   <td>{{ $order->status }}</td>
                   <td>
-                      <a href="#">
+                      <a href="{{ route('user.order', [$order->user_id, $order->id]) }}">
                           <button class="btn btn-info">View Order</button>
                       </a>
                   </td>                  

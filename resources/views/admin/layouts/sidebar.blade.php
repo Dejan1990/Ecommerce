@@ -103,9 +103,7 @@
       <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Order </h6>
-          <a class="collapse-item" href="#">View</a>
-
-
+          <a class="collapse-item" href="{{ route('order.index') }}">View</a>
         </div>
       </div>
     </li>

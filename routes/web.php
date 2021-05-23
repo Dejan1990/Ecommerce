@@ -49,4 +49,5 @@ Route::group(['prefix' => 'auth', 'middleware' => ['auth', 'isAdmin']], function
     Route::get('users', [UserController::class, 'index'])->name('user.index');
 
     Route::get('/orders', [CartController::class, 'userOrder'])->name('order.index');
+    Route::get('/orders/{userid}/{orderid}',  [CartController::class, 'viewUserOrder'])->name('user.order');
 });
