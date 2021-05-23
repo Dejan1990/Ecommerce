@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
+//use App\Mail\Sendmail;
 
 class CartController extends Controller
 {
@@ -81,6 +82,13 @@ class CartController extends Controller
         ]);
 
         $chargeId = $charge['id']; //$charge je ovo iznad $charge
+		/*if(session()->has('cart')){
+            $cart = new Cart(session()->get('cart'));
+        }else{
+            $cart = null;
+        } 
+        \Mail::to(auth()->user()->email)->send(new Sendmail($cart)); ovo koristimo kad ubacim mail
+        */
         if($chargeId){
             auth()->user()->orders()->create([
                 'cart' => serialize(session()->get('cart'))
