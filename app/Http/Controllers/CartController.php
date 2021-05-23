@@ -27,11 +27,7 @@ class CartController extends Controller
 
 	public function showCart()
 	{
-    	if(session()->has('cart')){
-    		$cart = new Cart(session()->get('cart'));
-    	}else{
-    		$cart = null;
-    	}
+    	$cart = $this->setCartNull();
 
     	return view('frontend.cart.index', [
 			'cart' => $cart
@@ -64,12 +60,33 @@ class CartController extends Controller
         return redirect()->back();
     }
 
+	public function checkout($amount)
+	{
+        $cart = $this->setCartNull();
+
+        return view('frontend.cart.checkout', [
+			'cart' => $cart,
+			'amount' => $amount
+		]);
+    }
+
 	private function setCart() 
 	{
 		if(session()->has('cart')){ 
     		$value = new Cart(session()->get('cart'));
     	}else{
     		$value = new Cart();
+    	}
+
+		return $value;
+	}
+
+	private function setCartNull()
+	{
+		if(session()->has('cart')){ 
+    		$value = new Cart(session()->get('cart'));
+    	}else{
+    		$value = null;
     	}
 
 		return $value;
