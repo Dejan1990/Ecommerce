@@ -49,6 +49,8 @@ class FrontendProductController extends Controller
         if($request->subcategory){
             $products = $this->filterProducts($request);
             $filterSubCategories = $this->getSubcategoriesId($request);
+        } elseif ($request->min || $request->max){
+            $products = $this->filterByPrice($request);
         } else {
             $products = Product::where('category_id', $category->id)->get();
         }
@@ -61,6 +63,13 @@ class FrontendProductController extends Controller
             'subcategories' => $subcategories,
             'filterSubCategories' => $filterSubCategories
         ]);
+    }
+
+    private function filterByPrice(Request $request)
+    {
+        //$categoryId = $request->categoryId; //$categoryId se podudara sa $categoryId u allProduct($name, Request $request)
+        $product = Product::whereBetween('price', [$request->min, $request->max ])->where('category_id', $request->categoryId)->get();
+        return $product;
     }
 
     private function filterProducts(Request $request)

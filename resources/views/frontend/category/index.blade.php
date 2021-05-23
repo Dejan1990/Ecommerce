@@ -22,6 +22,19 @@
            @endforeach
           <input type="submit" value="Filter" class="btn btn-success">
          </form>
+         <hr>
+         <h3>Filter by price</h3>
+         <form action="{{ route('product.list', $category) }}" method="GET">
+             <input type="text" name="min" class="form-control" placeholder="minimum price" required>
+            <br>
+             <input type="text" name="max" class="form-control" placeholder="maximum price" required>
+             <input type="hidden" name="categoryId" value="{{ $category->id }}">
+             <br>
+             <br>
+            <input type="submit" value="Filter" class="btn btn-secondary">
+        </form>
+       <hr>
+       <a href="{{ route('product.list', $category) }}">Back</a>
         </div>
       <div class="col-md-10">
         <div class="row">
