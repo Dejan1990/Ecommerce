@@ -47,4 +47,17 @@ class CartController extends Controller
     	notify()->success('Cart updated!');
         return redirect()->back();
     }
+
+	public function removeCart(Product $product)
+	{
+    	$cart = new Cart(session()->get('cart'));
+    	$cart->remove($product->id);
+    	if($cart->totalQty<=0){ //$cart->totalQty<=0 totalQty equal or less than 0
+    		session()->forget('cart');
+    	}else{
+    		session()->put('cart', $cart);
+    	}
+    	notify()->success('Cart updated!');
+        return redirect()->back();
+    }
 }

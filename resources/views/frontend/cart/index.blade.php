@@ -2,7 +2,11 @@
 
 @section('content')
  <div class="container">
-
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger">{{$error}}</div>
+        @endforeach
+    @endif
 <table class="table">
   <thead>
     <tr>
@@ -33,7 +37,7 @@
       </form>
     </td>
       <td>
-    <form action="#" method="post">
+    <form action="{{ route('cart.remove', $product['id']) }}" method="post">
         @csrf
       	<button class="btn btn-danger">Remove</button>
       </form>
