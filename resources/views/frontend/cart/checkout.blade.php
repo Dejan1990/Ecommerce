@@ -36,7 +36,7 @@
  		<div class="card">
  			<div class="card-header">Checkout</div>
  			<div class="card-body">
- 	            <form action="#" method="post" id="payment-form">
+ 	            <form action="/charge" method="post" id="payment-form">
                     @csrf
                     <div class="form-group">
                         <label>Name</label>

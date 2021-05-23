@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 class CartController extends Controller
 {
@@ -68,6 +69,29 @@ class CartController extends Controller
 			'cart' => $cart,
 			'amount' => $amount
 		]);
+    }
+
+	public function charge(Request $request)
+	{
+        $charge = Stripe::charges()->create([
+            'currency'=>"USD",
+            'source'=>$request->stripeToken, //stripeToken->checkout.blade.php 156 linija koda
+            'amount'=>$request->amount,//hidden input polje iz checkout.blade.php 62 linija koda
+            'description'=>'Test'
+        ]);
+
+        $chargeId = $charge['id']; //$charge je ovo iznad $charge
+        if($chargeId){
+            auth()->user()->orders()->create([
+                'cart' => serialize(session()->get('cart'))
+            ]);
+
+            session()->forget('cart');
+            notify()->success('Transaction completed!');
+            return redirect()->to('/');
+        }else{
+            return redirect()->back();
+        }
     }
 
 	private function setCart() 

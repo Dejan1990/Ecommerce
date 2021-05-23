@@ -18,6 +18,7 @@ Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/products/{product}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/product/{product}', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::get('/checkout/{amount}', [CartController::class, 'checkout'])->name('cart.checkout')->middleware('auth');
+Route::post('/charge', [CartController::class, 'charge'])->name('cart.charge');
 
 Auth::routes();
 
