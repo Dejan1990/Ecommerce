@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -19,11 +20,13 @@ class FrontendProductController extends Controller
     	}
     	$randomItemProducts = Product::whereNotIn('id', $randomActiveProductIds)->limit(3)->get();
         $categories = Category::all();
+        $sliders = Slider::get();
         return view('frontend.product.index', [
             'products' => $products,
             'randomActiveProducts' => $randomActiveProducts,
             'randomItemProducts' => $randomItemProducts,
-            'categories' => $categories
+            'categories' => $categories,
+            'sliders' => $sliders
         ]);
     }
 

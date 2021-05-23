@@ -4,6 +4,28 @@
 <div class="container">
     <main role="main">
 
+      <div class="container">
+        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          @if($sliders->count() > 0)
+            @foreach($sliders as $key=>$slider)
+              <div class="carousel-item {{ $key == 0 ? 'active' : '' }} ">
+                <img src="{{ Storage::url($slider->image) }}">
+              </div>
+            @endforeach
+          @endif
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+       </div>
+      </div>
+
   <div class="container">
   <h2>Category</h2>
   @foreach($categories as $category)
